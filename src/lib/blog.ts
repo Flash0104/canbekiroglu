@@ -64,7 +64,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       tags: matterResult.data.tags || [],
       content: contentHtml,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }

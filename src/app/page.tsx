@@ -16,14 +16,14 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="order-2 md:order-1">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
-              Hi, I'm{' '}
+              Hi, I&apos;m{' '}
               <span className="text-primary">Can Bekiroglu</span>
             </h1>
             <h2 className="text-xl md:text-2xl text-muted-foreground mb-6">
               Software Engineer & Full-Stack Developer
             </h2>
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              I'm a passionate software engineer with expertise in modern web technologies. 
+              I&apos;m a passionate software engineer with expertise in modern web technologies. 
               I love building scalable applications and solving complex problems with clean, 
               efficient code. Currently focused on React, Next.js, and cloud technologies.
             </p>
@@ -84,7 +84,7 @@ export default async function HomePage() {
           <div>
             <h2 className="text-3xl font-bold mb-2">Featured Projects</h2>
             <p className="text-muted-foreground">
-              Some of my recent work that I'm proud of
+              Some of my recent work that I&apos;m proud of
             </p>
           </div>
           <Button asChild variant="outline">
@@ -123,11 +123,11 @@ export default async function HomePage() {
       {/* CTA Section */}
       <section className="py-12 text-center">
         <div className="bg-muted rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4">Let's Work Together</h2>
+          <h2 className="text-2xl font-bold mb-4">Let&apos;s Work Together</h2>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            I'm always interested in new opportunities and exciting projects. 
+            I&apos;m always interested in new opportunities and exciting projects. 
             Whether you have a project in mind or just want to chat about technology, 
-            I'd love to hear from you.
+            I&apos;d love to hear from you.
           </p>
           <Button asChild size="lg">
             <Link href="/contact">

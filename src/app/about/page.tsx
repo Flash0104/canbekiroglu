@@ -33,21 +33,21 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold mb-4">My Story</h2>
               <div className="prose prose-gray dark:prose-invert max-w-none">
                 <p className="text-muted-foreground mb-4">
-                  I'm a passionate Computer Engineering student at the University of Duisburg-Essen with hands-on 
+                  I&apos;m a passionate Computer Engineering student at the University of Duisburg-Essen with hands-on 
                   experience in data analysis and IT infrastructure. My journey began with a foundation year at 
                   FH Aachen University of Applied Sciences, where I built strong fundamentals in computer engineering 
                   and achieved a solid 3.2 GPA.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Through internships at Monay and PrioRim Technologies, I've gained practical experience in data 
+                  Through internships at Monay and PrioRim Technologies, I&apos;ve gained practical experience in data 
                   analysis using Python, Pandas, and Machine Learning, as well as IT infrastructure management. 
                   I specialize in modern web development with React, Next.js, and TypeScript, combining my 
                   analytical background with full-stack development skills.
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Currently pursuing my Bachelor's degree while continuously expanding my technical skills, 
-                  I'm passionate about creating innovative digital solutions and exploring the intersection 
-                  of data science and web development. I'm fluent in German and English, enabling me to work 
+                  Currently pursuing my Bachelor&apos;s degree while continuously expanding my technical skills, 
+                  I&apos;m passionate about creating innovative digital solutions and exploring the intersection 
+                  of data science and web development. I&apos;m fluent in German and English, enabling me to work 
                   effectively in international environments.
                 </p>
               </div>
@@ -215,7 +215,7 @@ export default function AboutPage() {
               <CardContent>
                 <p className="text-muted-foreground mb-2">Duisburg, Germany</p>
                 <p className="text-muted-foreground">
-                  Currently pursuing Bachelor's degree in Computer Engineering with focus on software development, 
+                  Currently pursuing Bachelor&apos;s degree in Computer Engineering with focus on software development, 
                   data structures, algorithms, and modern web technologies. Developing expertise in machine learning 
                   and full-stack development.
                 </p>

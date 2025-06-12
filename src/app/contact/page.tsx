@@ -20,7 +20,7 @@ export default function ContactPage() {
     e.preventDefault();
     // For now, just log to console
     console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
+    alert('Thank you for your message! I&apos;ll get back to you soon.');
     setFormData({ name: '', email: '', subject: '', message: '' });
   };
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Get In Touch</h1>
           <p className="text-xl text-muted-foreground">
-            Have a project in mind or just want to chat? I'd love to hear from you.
+            Have a project in mind or just want to chat? I&apos;d love to hear from you.
           </p>
         </div>
 
@@ -100,9 +100,9 @@ export default function ContactPage() {
               </Card>
 
               <div className="pt-6">
-                <h3 className="font-semibold mb-4">Let's Connect</h3>
+                <h3 className="font-semibold mb-4">Let&apos;s Connect</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  I'm always open to discussing new opportunities, interesting projects, 
+                  I&apos;m always open to discussing new opportunities, interesting projects, 
                   or just having a chat about technology and development.
                 </p>
                 <p className="text-muted-foreground text-sm">
@@ -118,7 +118,7 @@ export default function ContactPage() {
               <CardHeader>
                 <CardTitle>Send a Message</CardTitle>
                 <CardDescription>
-                  Fill out the form below and I'll get back to you as soon as possible.
+                  Fill out the form below and I&apos;ll get back to you as soon as possible.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -165,7 +165,7 @@ export default function ContactPage() {
                       required
                       value={formData.subject}
                       onChange={handleChange}
-                      placeholder="What's this about?"
+                      placeholder="What&apos;s this about?"
                     />
                   </div>
 
