@@ -45,7 +45,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Ta
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/portfolio.git
+   git clone https://github.com/Flash0104/Portfolio.git
    cd portfolio
    ```
 
@@ -172,7 +172,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/portfolio/issues).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/Flash0104/Portfolio/issues).
 
 ## 📞 Support
 
