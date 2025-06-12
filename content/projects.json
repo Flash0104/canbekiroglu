@@ -1,0 +1,47 @@
+[
+  {
+    "id": "1",
+    "title": "Lieferspatz - Food Delivery Platform",
+    "description": "A comprehensive food delivery platform with multi-user authentication (Customer, Restaurant, Admin), real-time cart management, and PostgreSQL database. Features include restaurant dashboards, order processing, and payment integration.",
+    "technologies": ["Next.js 15", "TypeScript", "PostgreSQL", "Prisma", "NextAuth.js", "Tailwind CSS"],
+    "githubUrl": "https://github.com/Flash0104/Lieferspatz-N3XT",
+    "liveUrl": "https://lieferspatz-n3xt.vercel.app",
+    "image": "/projects/liefer_photo.jpg"
+  },
+  {
+    "id": "2",
+    "title": "E-Commerce Platform",
+    "description": "A full-stack e-commerce platform built with Next.js, TypeScript, and Supabase. Features include user authentication, product management, shopping cart, and payment integration.",
+    "technologies": ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Stripe"],
+    "githubUrl": "https://github.com/Flash0104/ecommerce-platform",
+    "liveUrl": "https://ecommerce-platform-demo.vercel.app",
+    "image": "/projects/ecommerce.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Task Management App",
+    "description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+    "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
+    "githubUrl": "https://github.com/Flash0104/task-manager",
+    "liveUrl": "https://task-manager-demo.vercel.app",
+    "image": "/projects/taskmanager.jpg"
+  },
+  {
+    "id": "4",
+    "title": "Weather Dashboard",
+    "description": "A responsive weather dashboard that displays current weather conditions, forecasts, and interactive maps using multiple weather APIs.",
+    "technologies": ["React", "TypeScript", "OpenWeather API", "Chart.js", "Tailwind CSS"],
+    "githubUrl": "https://github.com/Flash0104/weather-dashboard",
+    "liveUrl": "https://weather-dashboard-demo.vercel.app",
+    "image": "/projects/weather.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Portfolio Website",
+    "description": "A modern, responsive portfolio website built with Next.js 14, featuring a blog system, project showcase, and contact form.",
+    "technologies": ["Next.js 14", "TypeScript", "Tailwind CSS", "Markdown", "shadcn/ui"],
+    "githubUrl": "https://github.com/Flash0104/portfolio",
+    "liveUrl": "https://yourportfolio.vercel.app",
+    "image": "/projects/portfolio.jpg"
+  }
+] 
