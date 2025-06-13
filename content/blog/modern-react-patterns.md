@@ -1,6 +1,6 @@
 ---
 title: "Modern React Patterns and Best Practices"
-date: "2024-01-29"
+date: "2025-01-29"
 description: "Explore advanced React patterns, hooks, and best practices for building maintainable and performant applications."
 tags: ["React", "Hooks", "Patterns", "Performance", "Best Practices"]
 ---

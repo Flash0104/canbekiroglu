@@ -88,7 +88,7 @@ Add Markdown files to `content/blog/` with frontmatter:
 ```markdown
 ---
 title: "Your Blog Post"
-date: "2024-01-01"
+date: "2025-01-01"
 description: "Post description"
 tags: ["tag1", "tag2"]
 ---

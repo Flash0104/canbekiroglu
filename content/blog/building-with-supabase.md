@@ -1,6 +1,6 @@
 ---
 title: "Building Full-Stack Applications with Supabase"
-date: "2024-01-22"
+date: "2025-01-22"
 description: "Learn how to build scalable full-stack applications using Supabase as your backend-as-a-service platform."
 tags: ["Supabase", "PostgreSQL", "Authentication", "Real-time", "Backend"]
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Getting Started with Next.js 14 and TypeScript"
-date: "2024-01-15"
+date: "2025-01-15"
 description: "A comprehensive guide to building modern web applications with Next.js 14, TypeScript, and the new App Router."
 tags: ["Next.js", "TypeScript", "React", "Web Development"]
 ---
