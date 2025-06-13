@@ -6,22 +6,46 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function ContactPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: '',
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just log to console
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I&apos;ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        // Redirect to thank you page
+        router.push('/contact/thank-you');
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -184,8 +208,8 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full">
-                    Send Message
+                  <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
+                    {isLoading ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>
