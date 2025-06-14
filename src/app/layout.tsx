@@ -43,6 +43,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Can Bekiroglu" }],
   creator: "Can Bekiroglu",
+  verification: {
+    google: "5KaiefXi9uSZ28T9as8xSTKLn-zJXPCMEXZpuNP-bmQ",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
