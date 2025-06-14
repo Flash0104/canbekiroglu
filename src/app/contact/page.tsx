@@ -7,11 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle, Mail, MapPin, Send } from "lucide-react";
-import { useRouter } from 'next/navigation';
 import { useState } from "react";
 
 export default function ContactPage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -58,8 +56,8 @@ export default function ContactPage() {
           Get In Touch
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Have a project in mind or just want to chat? I'd love to hear from you. 
-          Let's create something amazing together!
+          Have a project in mind or just want to chat? I&apos;d love to hear from you. 
+          Let&apos;s create something amazing together!
         </p>
       </motion.div>
 
@@ -116,9 +114,9 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center p-6"
             >
-              <h3 className="font-semibold text-lg mb-4">Let's Connect</h3>
+              <h3 className="font-semibold text-lg mb-4">Let&apos;s Connect</h3>
               <p className="text-muted-foreground mb-4">
-                I'm always open to discussing new opportunities, creative projects, or just having a friendly chat about technology.
+                I&apos;m always open to discussing new opportunities, creative projects, or just having a friendly chat about technology.
               </p>
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -145,7 +143,7 @@ export default function ContactPage() {
                 Send me a message
               </CardTitle>
               <CardDescription>
-                Fill out the form below and I'll get back to you as soon as possible.
+                Fill out the form below and I&apos;ll get back to you as soon as possible.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -324,7 +322,7 @@ export default function ContactPage() {
                       transition={{ delay: 0.6 }}
                       className="text-muted-foreground"
                     >
-                      Thank you for reaching out. I'll get back to you soon!
+                      Thank you for reaching out. I&apos;ll get back to you soon!
                     </motion.p>
                   </motion.div>
                 )}

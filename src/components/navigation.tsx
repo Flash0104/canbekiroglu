@@ -20,10 +20,8 @@ export function Navigation() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
+    // Component is mounted
   }, []);
 
   return (

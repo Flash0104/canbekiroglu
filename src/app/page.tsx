@@ -61,7 +61,7 @@ export default function Home() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  Hi, I'm{" "}
+                  Hi, I&apos;m{" "}
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Can Bekiroglu
                   </span>
@@ -69,11 +69,11 @@ export default function Home() {
                 <p className="text-xl text-muted-foreground">
                   Software Engineer & Full-Stack Developer
                 </p>
-                <p className="text-lg text-muted-foreground max-w-lg">
-                  I'm a passionate software engineer with expertise in modern web technologies. I love
-                  building scalable applications and solving complex problems with clean, efficient code.
-                  Currently focused on React, Next.js, and cloud technologies.
-                </p>
+                                 <p className="text-lg text-muted-foreground max-w-lg">
+                   I&apos;m a passionate software engineer with expertise in modern web technologies. I love
+                   building scalable applications and solving complex problems with clean, efficient code.
+                   Currently focused on React, Next.js, and cloud technologies.
+                 </p>
               </div>
 
               {/* Social Links */}
@@ -142,7 +142,7 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {skills.map((skill, index) => (
+            {skills.map((skill) => (
               <div
                 key={skill.name}
                 className={`p-6 rounded-xl bg-gradient-to-br ${skill.color} text-white text-center font-semibold shadow-lg`}
@@ -164,7 +164,7 @@ export default function Home() {
                 </span>
               </h2>
               <p className="text-muted-foreground">
-                Some of my recent work that I'm proud of
+                Some of my recent work that I&apos;m proud of
               </p>
             </div>
             <Button variant="outline" asChild>
@@ -262,7 +262,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Hi, I'm{" "}
+                Hi, I&apos;m{" "}
                 <motion.span 
                   className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
                   animate={{ 
@@ -292,7 +292,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                I'm a passionate software engineer with expertise in modern web technologies. I love
+                I&apos;m a passionate software engineer with expertise in modern web technologies. I love
                 building scalable applications and solving complex problems with clean, efficient code.
                 Currently focused on React, Next.js, and cloud technologies.
               </motion.p>
@@ -435,7 +435,7 @@ export default function Home() {
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {skills.map((skill, index) => (
+          {skills.map((skill) => (
             <motion.div
               key={skill.name}
               className={`p-6 rounded-xl bg-gradient-to-br ${skill.color} text-white text-center font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
@@ -444,7 +444,6 @@ export default function Home() {
                              whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2 } }}
                transition={{ 
                  duration: 0.5, 
-                 delay: index * 0.1
                }}
               viewport={{ once: true }}
             >
@@ -471,7 +470,7 @@ export default function Home() {
               </span>
             </h2>
             <p className="text-muted-foreground">
-              Some of my recent work that I'm proud of
+              Some of my recent work that I&apos;m proud of
             </p>
           </div>
           <motion.div
