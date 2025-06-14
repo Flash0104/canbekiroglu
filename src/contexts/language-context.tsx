@@ -127,7 +127,7 @@ const translations = {
     "contact.info.availability": "Availability",
     "contact.info.response": "Response Time",
     "contact.info.emailValue": "canbek0104@gmail.com",
-    "contact.info.locationValue": "Turkey",
+    "contact.info.locationValue": "Germany, Duisburg",
     "contact.info.availabilityValue": "Available for freelance",
     "contact.info.responseValue": "Usually within 24 hours",
     
@@ -277,7 +277,7 @@ const translations = {
     "contact.info.availability": "Verfügbarkeit",
     "contact.info.response": "Antwortzeit",
     "contact.info.emailValue": "canbek0104@gmail.com",
-    "contact.info.locationValue": "Türkei",
+    "contact.info.locationValue": "Deutschland, Duisburg",
     "contact.info.availabilityValue": "Verfügbar für Freelance",
     "contact.info.responseValue": "Normalerweise innerhalb von 24 Stunden",
     
