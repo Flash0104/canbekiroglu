@@ -192,7 +192,7 @@ export default function Home() {
               projects.map((project) => (
                 <div
                   key={project.id}
-                  className="group bg-card rounded-lg overflow-hidden border hover:shadow-lg transition-all duration-300"
+                  className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <Image
@@ -201,34 +201,60 @@ export default function Home() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
                   </div>
+                  
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-4 line-clamp-2">
+                    <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.slice(0, 3).map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
-                          {tech}
-                        </Badge>
-                      ))}
+                      {project.technologies.slice(0, 4).map((tech, techIndex) => {
+                        const colors = [
+                          "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
+                          "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
+                          "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30",
+                          "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
+                        ];
+                        return (
+                          <Badge 
+                            key={tech} 
+                            variant="outline" 
+                            className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
+                          >
+                            {tech}
+                          </Badge>
+                        );
+                      })}
                     </div>
-                    <div className="flex gap-2">
+                    
+                    {/* Buttons at bottom of card */}
+                    <div className="flex gap-3 mt-4">
                       {project.githubUrl && (
-                        <Button variant="outline" size="sm" asChild>
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          asChild 
+                          className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-white/10 hover:border-blue-400 hover:text-white transition-all duration-300"
+                        >
                           <Link href={project.githubUrl} target="_blank">
-                            <Github className="h-4 w-4" />
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
                           </Link>
                         </Button>
                       )}
                       {project.liveUrl && (
-                        <Button variant="outline" size="sm" asChild>
+                        <Button 
+                          size="sm" 
+                          asChild 
+                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg"
+                        >
                           <Link href={project.liveUrl} target="_blank">
-                            <ExternalLink className="h-4 w-4" />
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Live Demo
                           </Link>
                         </Button>
                       )}
@@ -506,18 +532,10 @@ export default function Home() {
               </motion.div>
             ))
           ) : (
-            projects.map((project, index) => (
-              <motion.div
+            projects.map((project) => (
+              <div
                 key={project.id}
-                className="group bg-card rounded-lg overflow-hidden border hover:shadow-lg transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                 transition={{ 
-                   duration: 0.5, 
-                   delay: index * 0.1
-                 }}
-                viewport={{ once: true }}
+                className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
                   <Image
@@ -526,44 +544,66 @@ export default function Home() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
                 </div>
+                
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-purple-500/20 transition-all duration-300">
-                        {tech}
-                      </Badge>
-                    ))}
+                    {project.technologies.slice(0, 4).map((tech, techIndex) => {
+                      const colors = [
+                        "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
+                        "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
+                        "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30",
+                        "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
+                      ];
+                      return (
+                        <Badge 
+                          key={tech} 
+                          variant="outline" 
+                          className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
+                        >
+                          {tech}
+                        </Badge>
+                      );
+                    })}
                   </div>
-                  <div className="flex gap-2">
+                  
+                  {/* Buttons at bottom of card */}
+                  <div className="flex gap-3 mt-4">
                     {project.githubUrl && (
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button variant="outline" size="sm" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-400 transition-all duration-300">
-                          <Link href={project.githubUrl} target="_blank">
-                            <Github className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </motion.div>
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        asChild 
+                        className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-white/10 hover:border-blue-400 hover:text-white transition-all duration-300"
+                      >
+                        <Link href={project.githubUrl} target="_blank">
+                          <Github className="h-4 w-4 mr-2" />
+                          Code
+                        </Link>
+                      </Button>
                     )}
                     {project.liveUrl && (
-                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        <Button variant="outline" size="sm" asChild className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300">
-                          <Link href={project.liveUrl} target="_blank">
-                            <ExternalLink className="h-4 w-4" />
-                          </Link>
-                        </Button>
-                      </motion.div>
+                      <Button 
+                        size="sm" 
+                        asChild 
+                        className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg"
+                      >
+                        <Link href={project.liveUrl} target="_blank">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Live Demo
+                        </Link>
+                      </Button>
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))
           )}
         </div>
