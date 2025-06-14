@@ -1,14 +1,19 @@
+"use client";
+
+import { useLanguage } from '@/contexts/language-context';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-sm text-muted-foreground">
-              © 2025 Can Bekiroglu. All rights reserved.
+              © 2025 Can Bekiroglu. {t("footer.rights")}
             </p>
           </div>
           
@@ -45,7 +50,7 @@ export function Footer() {
         
         <div className="mt-8 pt-8 border-t">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-            <p>Built with Next.js 14, TypeScript, and Tailwind CSS</p>
+            <p>{t("footer.builtWith")}</p>
             <p className="mt-2 md:mt-0">
               Deployed on{' '}
               <Link

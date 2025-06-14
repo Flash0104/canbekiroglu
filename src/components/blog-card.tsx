@@ -1,4 +1,7 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/language-context';
 import { BlogPostMeta } from '@/lib/blog';
 import { Calendar, Clock } from 'lucide-react';
 import Link from 'next/link';
@@ -8,11 +11,16 @@ interface BlogCardProps {
 }
 
 export function BlogCard({ post }: BlogCardProps) {
-  const formattedDate = new Date(post.date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+  const { language } = useLanguage();
+  
+  const formattedDate = new Date(post.date).toLocaleDateString(
+    language === 'de' ? 'de-DE' : language === 'tr' ? 'tr-TR' : 'en-US',
+    {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }
+  );
 
   return (
     <Link href={`/blog/${post.slug}`}>

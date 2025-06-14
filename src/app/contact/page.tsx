@@ -5,11 +5,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/contexts/language-context";
 import { AnimatePresence, motion } from "framer-motion";
 import { CheckCircle, Mail, MapPin, Send } from "lucide-react";
 import { useState } from "react";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,11 +55,10 @@ export default function ContactPage() {
         className="text-center mb-12"
       >
         <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Get In Touch
+          {t("contact.title")}
         </h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Have a project in mind or just want to chat? I&apos;d love to hear from you. 
-          Let&apos;s create something amazing together!
+          {t("contact.description")}
         </p>
       </motion.div>
 
@@ -81,8 +82,8 @@ export default function ContactPage() {
                       <Mail className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Email</h3>
-                      <p className="text-muted-foreground">canbek0104@gmail.com</p>
+                      <h3 className="font-semibold text-lg">{t("contact.info.email")}</h3>
+                      <p className="text-muted-foreground">{t("contact.info.emailValue")}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -100,8 +101,8 @@ export default function ContactPage() {
                       <MapPin className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-lg">Location</h3>
-                      <p className="text-muted-foreground">Duisburg, NRW, Germany</p>
+                      <h3 className="font-semibold text-lg">{t("contact.info.location")}</h3>
+                      <p className="text-muted-foreground">{t("contact.info.locationValue")}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -114,9 +115,9 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center p-6"
             >
-              <h3 className="font-semibold text-lg mb-4">Let&apos;s Connect</h3>
+              <h3 className="font-semibold text-lg mb-4">{t("contact.subtitle")}</h3>
               <p className="text-muted-foreground mb-4">
-                I&apos;m always open to discussing new opportunities, creative projects, or just having a friendly chat about technology.
+                {t("contact.description")}
               </p>
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -140,10 +141,10 @@ export default function ContactPage() {
           <Card className="border-0 shadow-xl">
             <CardHeader>
               <CardTitle className="text-2xl bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400 bg-clip-text text-transparent">
-                Send me a message
+                {t("contact.form.send")}
               </CardTitle>
               <CardDescription>
-                Fill out the form below and I&apos;ll get back to you as soon as possible.
+                {t("contact.description")}
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -164,7 +165,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.5, delay: 0.1 }}
                         className="space-y-2"
                       >
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name">{t("contact.form.name")}</Label>
                         <motion.div
                           whileFocus={{ scale: 1.02 }}
                           transition={{ duration: 0.2 }}
@@ -174,6 +175,7 @@ export default function ContactPage() {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
+                            placeholder={t("contact.form.namePlaceholder")}
                             required
                             className="transition-all duration-300 focus:ring-2 focus:ring-blue-500/20"
                           />
@@ -185,7 +187,7 @@ export default function ContactPage() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         className="space-y-2"
                       >
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email">{t("contact.form.email")}</Label>
                         <motion.div
                           whileFocus={{ scale: 1.02 }}
                           transition={{ duration: 0.2 }}
@@ -196,6 +198,7 @@ export default function ContactPage() {
                             type="email"
                             value={formData.email}
                             onChange={handleChange}
+                            placeholder={t("contact.form.emailPlaceholder")}
                             required
                             className="transition-all duration-300 focus:ring-2 focus:ring-purple-500/20"
                           />
@@ -208,7 +211,7 @@ export default function ContactPage() {
                       transition={{ duration: 0.5, delay: 0.3 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="subject">Subject</Label>
+                      <Label htmlFor="subject">{t("contact.form.subject")}</Label>
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                         transition={{ duration: 0.2 }}
@@ -218,6 +221,7 @@ export default function ContactPage() {
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
+                          placeholder={t("contact.form.subjectPlaceholder")}
                           required
                           className="transition-all duration-300 focus:ring-2 focus:ring-pink-500/20"
                         />
@@ -229,7 +233,7 @@ export default function ContactPage() {
                       transition={{ duration: 0.5, delay: 0.4 }}
                       className="space-y-2"
                     >
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message">{t("contact.form.message")}</Label>
                       <motion.div
                         whileFocus={{ scale: 1.02 }}
                         transition={{ duration: 0.2 }}
@@ -239,9 +243,10 @@ export default function ContactPage() {
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
-                          rows={6}
+                          placeholder={t("contact.form.messagePlaceholder")}
                           required
-                          className="transition-all duration-300 focus:ring-2 focus:ring-green-500/20"
+                          rows={6}
+                          className="transition-all duration-300 focus:ring-2 focus:ring-green-500/20 resize-none"
                         />
                       </motion.div>
                     </motion.div>
@@ -257,37 +262,18 @@ export default function ContactPage() {
                         <Button
                           type="submit"
                           disabled={isSubmitting}
-                          className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                          className="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300"
                         >
-                          <AnimatePresence mode="wait">
-                            {isSubmitting ? (
-                              <motion.div
-                                key="loading"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="flex items-center space-x-2"
-                              >
-                                <motion.div
-                                  animate={{ rotate: 360 }}
-                                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                                  className="w-4 h-4 border-2 border-white border-t-transparent rounded-full"
-                                />
-                                <span>Sending...</span>
-                              </motion.div>
-                            ) : (
-                              <motion.div
-                                key="send"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                className="flex items-center space-x-2"
-                              >
-                                <Send className="h-4 w-4" />
-                                <span>Send Message</span>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
+                          {isSubmitting ? (
+                            <motion.div
+                              animate={{ rotate: 360 }}
+                              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              className="w-4 h-4 border-2 border-white border-t-transparent rounded-full mr-2"
+                            />
+                          ) : (
+                            <Send className="w-4 h-4 mr-2" />
+                          )}
+                          {isSubmitting ? t("contact.form.sending") : t("contact.form.send")}
                         </Button>
                       </motion.div>
                     </motion.div>
@@ -303,27 +289,16 @@ export default function ContactPage() {
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      transition={{ delay: 0.2, type: "spring", bounce: 0.5 }}
-                      className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                      transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                     >
-                      <CheckCircle className="h-8 w-8 text-white" />
+                      <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
                     </motion.div>
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                      className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2"
-                    >
-                      Message Sent!
-                    </motion.h3>
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 }}
-                      className="text-muted-foreground"
-                    >
-                      Thank you for reaching out. I&apos;ll get back to you soon!
-                    </motion.p>
+                    <h3 className="text-2xl font-bold text-green-600 mb-2">
+                      {t("contact.form.success")}
+                    </h3>
+                    <p className="text-muted-foreground">
+                      {t("contact.info.responseValue")}
+                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>

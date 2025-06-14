@@ -3,8 +3,8 @@ import path from 'path';
 
 export interface Project {
   id: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   technologies: string[];
   githubUrl: string;
   liveUrl: string;

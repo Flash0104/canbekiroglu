@@ -1,17 +1,22 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/language-context';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">About Me</h1>
+          <h1 className="text-4xl font-bold mb-4">{t("about.title")}</h1>
           <p className="text-xl text-muted-foreground">
-            Get to know more about my journey, skills, and passion for technology
+            {t("about.subtitle")}
           </p>
         </div>
 
@@ -30,25 +35,16 @@ export default function AboutPage() {
             </div>
             
             <div className="md:col-span-2">
-              <h2 className="text-2xl font-bold mb-4">My Story</h2>
+              <h2 className="text-2xl font-bold mb-4">{t("about.myStory")}</h2>
               <div className="prose prose-gray dark:prose-invert max-w-none">
                 <p className="text-muted-foreground mb-4">
-                  I&apos;m a passionate Computer Engineering student at the University of Duisburg-Essen with hands-on 
-                  experience in data analysis and IT infrastructure. My journey began with a foundation year at 
-                  FH Aachen University of Applied Sciences, where I built strong fundamentals in computer engineering 
-                  and achieved a solid 3.2 GPA.
+                  {t("about.story1")}
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Through internships at Monay and PrioRim Technologies, I&apos;ve gained practical experience in data 
-                  analysis using Python, Pandas, and Machine Learning, as well as IT infrastructure management. 
-                  I specialize in modern web development with React, Next.js, and TypeScript, combining my 
-                  analytical background with full-stack development skills.
+                  {t("about.story2")}
                 </p>
                 <p className="text-muted-foreground mb-6">
-                  Currently pursuing my Bachelor&apos;s degree while continuously expanding my technical skills, 
-                  I&apos;m passionate about creating innovative digital solutions and exploring the intersection 
-                  of data science and web development. I&apos;m fluent in German and English, enabling me to work 
-                  effectively in international environments.
+                  {t("about.story3")}
                 </p>
               </div>
               
@@ -86,12 +82,12 @@ export default function AboutPage() {
 
         {/* Skills Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Technical Skills</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("about.skills")}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle>Frontend</CardTitle>
-                <CardDescription>Modern web interfaces</CardDescription>
+                <CardTitle>{t("about.frontend")}</CardTitle>
+                <CardDescription>{t("about.frontendDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -106,8 +102,8 @@ export default function AboutPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Backend</CardTitle>
-                <CardDescription>Server-side development</CardDescription>
+                <CardTitle>{t("about.backend")}</CardTitle>
+                <CardDescription>{t("about.backendDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -122,8 +118,8 @@ export default function AboutPage() {
 
             <Card>
               <CardHeader>
-                <CardTitle>Tools & Cloud</CardTitle>
-                <CardDescription>Development & deployment</CardDescription>
+                <CardTitle>{t("about.toolsCloud")}</CardTitle>
+                <CardDescription>{t("about.toolsCloudDesc")}</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -140,24 +136,24 @@ export default function AboutPage() {
 
         {/* Experience Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-bold mb-6">Experience</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("about.experience")}</h2>
           <div className="space-y-6">
             <Card>
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>Data Analyst Internship</CardTitle>
-                    <CardDescription>Monay · Apprenticeship</CardDescription>
+                    <CardTitle>{t("about.dataAnalyst")}</CardTitle>
+                    <CardDescription>{t("about.monayDesc")}</CardDescription>
                   </div>
                   <span className="text-sm text-muted-foreground">Oct 2023 - Dec 2023</span>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-2">Istanbul, Turkey · Remote</p>
+                <p className="text-muted-foreground mb-2">{t("about.istanbulRemote")}</p>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Developed data analysis solutions using Python and Pandas for financial data processing</li>
-                  <li>Implemented machine learning models with PostgreSQL and MongoDB integration</li>
-                  <li>Created automated data pipelines and visualization dashboards</li>
+                  <li>{t("about.dataAnalystTask1")}</li>
+                  <li>{t("about.dataAnalystTask2")}</li>
+                  <li>{t("about.dataAnalystTask3")}</li>
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {['Python', 'Pandas', 'MongoDB', 'PostgreSQL', 'Machine Learning'].map((skill) => (
@@ -173,18 +169,18 @@ export default function AboutPage() {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>IT Infrastructure</CardTitle>
-                    <CardDescription>PrioRim Technologies · Work Study</CardDescription>
+                    <CardTitle>{t("about.itInfrastructure")}</CardTitle>
+                    <CardDescription>{t("about.priorimDesc")}</CardDescription>
                   </div>
                   <span className="text-sm text-muted-foreground">Feb 2023 - Jul 2023</span>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-2">Düsseldorf, North Rhine-Westphalia, Germany · Hybrid</p>
+                <p className="text-muted-foreground mb-2">{t("about.dusseldorfHybrid")}</p>
                 <ul className="list-disc list-inside text-muted-foreground space-y-1">
-                  <li>Collaborated with PrioRim Technologies and Altinsoy Manufaktur on infrastructure projects</li>
-                  <li>Configured and managed furniture website systems and IT infrastructure</li>
-                  <li>Developed technical solutions for web-based business applications</li>
+                  <li>{t("about.itTask1")}</li>
+                  <li>{t("about.itTask2")}</li>
+                  <li>{t("about.itTask3")}</li>
                 </ul>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {['HTML', 'IT Infrastructure Management', 'Web Development'].map((skill) => (
@@ -200,32 +196,23 @@ export default function AboutPage() {
 
         {/* Education Section */}
         <section>
-          <h2 className="text-2xl font-bold mb-6">Education</h2>
+          <h2 className="text-2xl font-bold mb-6">{t("about.education")}</h2>
           <div className="space-y-6">
             <Card>
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>Bachelor of Science - BS, Computer Engineering</CardTitle>
-                    <CardDescription>University of Duisburg-Essen</CardDescription>
+                    <CardTitle>{t("about.bachelorTitle")}</CardTitle>
+                    <CardDescription>{t("about.universityDuisburg")}</CardDescription>
                   </div>
-                  <span className="text-sm text-muted-foreground">Oct 2022 - Jun 2025</span>
+                  <span className="text-sm text-muted-foreground">2024 - Present</span>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-2">Duisburg, Germany</p>
+                <p className="text-muted-foreground mb-2">{t("about.duisburgLocation")}</p>
                 <p className="text-muted-foreground">
-                  Currently pursuing Bachelor&apos;s degree in Computer Engineering with focus on software development, 
-                  data structures, algorithms, and modern web technologies. Developing expertise in machine learning 
-                  and full-stack development.
+                  {t("about.bachelorDesc")}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {['German', 'Machine Learning', 'Computer Engineering'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
               </CardContent>
             </Card>
 
@@ -233,26 +220,18 @@ export default function AboutPage() {
               <CardHeader>
                 <div className="flex justify-between items-start">
                   <div>
-                    <CardTitle>Internship / Freshman Institute, Computer Engineering</CardTitle>
-                    <CardDescription>FH Aachen University of Applied Sciences</CardDescription>
+                    <CardTitle>{t("about.foundationTitle")}</CardTitle>
+                    <CardDescription>{t("about.fhAachen")}</CardDescription>
                   </div>
-                  <span className="text-sm text-muted-foreground">Oct 2021 - Jul 2022</span>
+                  <span className="text-sm text-muted-foreground">2022 - 2023</span>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground mb-2">Aachen, Germany · Grade: 3.2 GPA (%80)</p>
+                <p className="text-muted-foreground mb-2">{t("about.aachenLocation")}</p>
+                <p className="text-muted-foreground mb-2">{t("about.grade")}</p>
                 <p className="text-muted-foreground">
-                  Foundation year program covering essential computer engineering fundamentals including 
-                  IT, Mathematics, Physics, and language skills. Strong performance in technical subjects 
-                  with comprehensive preparation for advanced studies.
+                  {t("about.foundationDesc")}
                 </p>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {['CSS', 'German', 'IT Fundamentals', 'Mathematics', 'Physics'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 text-xs bg-secondary text-secondary-foreground rounded-md">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
               </CardContent>
             </Card>
           </div>

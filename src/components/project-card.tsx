@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { useLanguage } from '@/contexts/language-context';
 import { Project } from '@/lib/projects';
 import { ExternalLink, Github } from 'lucide-react';
 import Image from 'next/image';
@@ -14,6 +15,10 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const [imageError, setImageError] = useState(false);
+  const { t } = useLanguage();
+
+  const title = t(project.titleKey);
+  const description = t(project.descriptionKey);
 
   // Create a placeholder SVG for failed images
   const createPlaceholder = (title: string) => {
@@ -34,8 +39,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
     <Card className="overflow-hidden">
       <div className="relative h-48 w-full bg-muted">
         <Image
-          src={imageError ? createPlaceholder(project.title) : project.image}
-          alt={project.title}
+          src={imageError ? createPlaceholder(title) : project.image}
+          alt={title}
           fill
           className="object-cover transition-all duration-300 hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -45,8 +50,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       
       <CardHeader>
-        <CardTitle>{project.title}</CardTitle>
-        <CardDescription className="line-clamp-3">{project.description}</CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription className="line-clamp-3">{description}</CardDescription>
       </CardHeader>
       
       <CardContent>
@@ -70,7 +75,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             rel="noopener noreferrer"
           >
             <Github className="h-4 w-4 mr-2" />
-            Code
+            {t("projects.code")}
           </Link>
         </Button>
         
@@ -81,7 +86,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             rel="noopener noreferrer"
           >
             <ExternalLink className="h-4 w-4 mr-2" />
-            Live Demo
+            {t("projects.demo")}
           </Link>
         </Button>
       </CardFooter>

@@ -1,28 +1,40 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Moon, Sun } from "lucide-react";
+import { useLanguage } from "@/contexts/language-context";
+import { Globe, Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" },
-];
-
 export function Navigation() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
+  
   useEffect(() => {
     // Component is mounted
   }, []);
+
+  const navItems = [
+    { href: "/", label: t("home") },
+    { href: "/about", label: t("about") },
+    { href: "/projects", label: t("projects") },
+    { href: "/blog", label: t("blog") },
+    { href: "/contact", label: t("contact") },
+  ];
+
+  const languages = [
+    { code: "en", name: "English", flag: "🇺🇸" },
+    { code: "de", name: "Deutsch", flag: "🇩🇪" },
+    { code: "tr", name: "Türkçe", flag: "🇹🇷" },
+  ];
+
+  const currentLanguage = languages.find(lang => lang.code === language);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -50,6 +62,30 @@ export function Navigation() {
         </nav>
 
         <div className="flex items-center space-x-2 flex-shrink-0">
+          {/* Language Selector */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="sm" className="flex items-center space-x-2 hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400 transition-all duration-300">
+                <Globe className="h-4 w-4" />
+                <span className="text-sm font-medium">{currentLanguage?.flag} {currentLanguage?.code.toUpperCase()}</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-40">
+              {languages.map((lang) => (
+                <DropdownMenuItem
+                  key={lang.code}
+                  onClick={() => setLanguage(lang.code as "en" | "de" | "tr")}
+                  className={`flex items-center space-x-2 cursor-pointer ${
+                    language === lang.code ? "bg-gradient-to-r from-purple-500/10 to-pink-500/10" : ""
+                  }`}
+                >
+                  <span>{lang.flag}</span>
+                  <span>{lang.name}</span>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button
             variant="ghost"
             size="icon"
@@ -86,6 +122,30 @@ export function Navigation() {
                       {item.label}
                     </Link>
                   ))}
+                  
+                  {/* Mobile Language Selector */}
+                  <div className="border-t pt-4 mt-4">
+                    <p className="text-sm font-medium text-muted-foreground mb-2">Language</p>
+                    <div className="space-y-2">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          onClick={() => {
+                            setLanguage(lang.code as "en" | "de" | "tr");
+                            setIsOpen(false);
+                          }}
+                          className={`flex items-center space-x-2 w-full px-4 py-2 rounded-lg text-left transition-all ${
+                            language === lang.code 
+                              ? "bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-foreground" 
+                              : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                          }`}
+                        >
+                          <span>{lang.flag}</span>
+                          <span>{lang.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </nav>
               </SheetContent>
             </Sheet>

@@ -2,6 +2,7 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/language-context";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, ExternalLink, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
@@ -10,8 +11,8 @@ import { useEffect, useState } from "react";
 
 interface Project {
   id: string;
-  title: string;
-  description: string;
+  titleKey: string;
+  descriptionKey: string;
   technologies: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -19,6 +20,7 @@ interface Project {
 }
 
 export default function Home() {
+  const { t } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
@@ -64,19 +66,17 @@ export default function Home() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  Hi, I&apos;m{" "}
+                  {t("hero.greeting")}{" "}
                   <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                     Can Bekiroglu
                   </span>
                 </h1>
                 <p className="text-xl text-muted-foreground">
-                  Software Engineer & Full-Stack Developer
+                  {t("hero.role")}
                 </p>
-                                 <p className="text-lg text-muted-foreground max-w-lg">
-                   I&apos;m a passionate software engineer with expertise in modern web technologies. I love
-                   building scalable applications and solving complex problems with clean, efficient code.
-                   Currently focused on React, Next.js, and cloud technologies.
-                 </p>
+                <p className="text-lg text-muted-foreground max-w-lg">
+                  {t("hero.description")}
+                </p>
               </div>
 
               {/* Social Links */}
@@ -99,13 +99,13 @@ export default function Home() {
               <div className="flex gap-4">
                 <Button size="lg" asChild>
                   <Link href="/contact">
-                    Get In Touch
+                    {t("hero.contact")}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg">
                   <Download className="mr-2 h-5 w-5" />
-                  Download CV
+                  {t("hero.download")}
                 </Button>
               </div>
             </div>
@@ -134,13 +134,13 @@ export default function Home() {
         <section className="container mx-auto px-4 py-16">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              What I Do{" "}
+              {t("skills.title")}{" "}
               <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-                Best
+                {t("skills.subtitle")}
               </span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              I specialize in building modern web applications with cutting-edge technologies
+              {t("skills.description")}
             </p>
           </div>
 
@@ -161,18 +161,18 @@ export default function Home() {
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-3xl font-bold mb-4">
-                Featured{" "}
+                {t("projects.featured")}{" "}
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Projects
+                  {t("projects.title")}
                 </span>
               </h2>
               <p className="text-muted-foreground">
-                Some of my recent work that I&apos;m proud of
+                {t("projects.description")}
               </p>
             </div>
             <Button variant="outline" asChild>
               <Link href="/projects">
-                View All Projects
+                {t("projects.viewAll")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -202,7 +202,7 @@ export default function Home() {
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={project.titleKey}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
@@ -211,10 +211,10 @@ export default function Home() {
                   
                   <div className="p-6 bg-white/90 backdrop-blur-sm shadow-inner">
                     <h3 className="text-xl font-bold mb-3 text-black group-hover:text-emerald-600 group-hover:scale-105 transition-all duration-300 drop-shadow-sm">
-                      {project.title}
+                      {t(project.titleKey)}
                     </h3>
                     <p className="text-gray-800 mb-4 line-clamp-2 leading-relaxed font-medium drop-shadow-sm">
-                      {project.description}
+                      {t(project.descriptionKey)}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 4).map((tech, techIndex) => {
@@ -247,7 +247,7 @@ export default function Home() {
                         >
                           <Link href={project.githubUrl} target="_blank">
                             <Github className="h-4 w-4 mr-2" />
-                            Code
+                            {t("projects.code")}
                           </Link>
                         </Button>
                       )}
@@ -259,7 +259,7 @@ export default function Home() {
                         >
                           <Link href={project.liveUrl} target="_blank">
                             <ExternalLink className="h-4 w-4 mr-2" />
-                            Live Demo
+                            {t("projects.demo")}
                           </Link>
                         </Button>
                       )}
@@ -293,7 +293,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Hi, I&apos;m{" "}
+                {t("hero.greeting")}{" "}
                 <motion.span 
                   className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
                   animate={{ 
@@ -315,7 +315,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Software Engineer & Full-Stack Developer
+                {t("hero.role")}
               </motion.p>
               <motion.p 
                 className="text-lg text-muted-foreground max-w-lg"
@@ -323,9 +323,7 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                I&apos;m a passionate software engineer with expertise in modern web technologies. I love
-                building scalable applications and solving complex problems with clean, efficient code.
-                Currently focused on React, Next.js, and cloud technologies.
+                {t("hero.description")}
               </motion.p>
             </div>
 
@@ -373,7 +371,7 @@ export default function Home() {
               >
                 <Button size="lg" asChild className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:drop-shadow-[0_0_16px_rgba(168,85,247,0.9)] hover:[text-shadow:0_0_12px_rgba(168,85,247,1),0_0_24px_rgba(168,85,247,0.7),0_0_36px_rgba(168,85,247,0.5)]">
                   <Link href="/contact">
-                    Get In Touch
+                    {t("hero.contact")}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
@@ -384,7 +382,7 @@ export default function Home() {
               >
                 <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.8)] hover:[text-shadow:0_0_8px_rgba(34,197,94,0.9),0_0_16px_rgba(34,197,94,0.6)]">
                   <Download className="mr-2 h-5 w-5" />
-                  Download CV
+                  {t("hero.download")}
                 </Button>
               </motion.div>
             </motion.div>
@@ -392,31 +390,24 @@ export default function Home() {
 
           {/* Right Content - Profile Image */}
           <motion.div 
-            className="flex justify-center lg:justify-start lg:pl-8"
+            className="flex justify-start lg:pl-8"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <motion.div 
-              className="relative"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 p-1">
-                <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Can Bekiroglu"
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover"
-                    priority
-                  />
-                </div>
-              </div>
-              {/* Floating elements */}
+            <div className="relative">
+              <Image
+                src="/profile.jpg"
+                alt="Can Bekiroglu"
+                width={400}
+                height={400}
+                className="rounded-2xl shadow-2xl hover:scale-105 transition-transform duration-300"
+                priority
+              />
+              
+              {/* Floating Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"
+                className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
                 animate={{ 
                   y: [0, -10, 0],
                   scale: [1, 1.1, 1]
@@ -440,7 +431,7 @@ export default function Home() {
                   delay: 0.5
                 }}
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -455,13 +446,13 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-bold mb-4">
-            What I Do{" "}
+            {t("skills.title")}{" "}
             <span className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
-              Best
+              {t("skills.subtitle")}
             </span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            I specialize in building modern web applications with cutting-edge technologies
+            {t("skills.description")}
           </p>
         </motion.div>
 
@@ -472,10 +463,10 @@ export default function Home() {
               className={`p-6 rounded-xl bg-gradient-to-br ${skill.color} text-white text-center font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-                             whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2 } }}
-               transition={{ 
-                 duration: 0.5, 
-               }}
+              whileHover={{ scale: 1.05, y: -5, transition: { duration: 0.2 } }}
+              transition={{ 
+                duration: 0.5, 
+              }}
               viewport={{ once: true }}
             >
               {skill.name}
@@ -495,13 +486,13 @@ export default function Home() {
         >
           <div>
             <h2 className="text-3xl font-bold mb-4">
-              Featured{" "}
+              {t("projects.featured")}{" "}
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                Projects
+                {t("projects.title")}
               </span>
             </h2>
             <p className="text-muted-foreground">
-              Some of my recent work that I&apos;m proud of
+              {t("projects.description")}
             </p>
           </div>
           <motion.div
@@ -510,7 +501,7 @@ export default function Home() {
           >
             <Button variant="outline" asChild className="hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)] hover:[text-shadow:0_0_8px_rgba(168,85,247,0.9),0_0_16px_rgba(168,85,247,0.6)]">
               <Link href="/projects">
-                View All Projects
+                {t("projects.viewAll")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -538,27 +529,27 @@ export default function Home() {
             ))
           ) : (
             projects.map((project) => (
-                              <div
-                  key={project.id}
-                  className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300"
-                >
+              <div
+                key={project.id}
+                className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300"
+              >
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={project.titleKey}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                 </div>
                 
                 <div className="p-6">
-                                      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
-                      {project.title}
-                    </h3>
-                                      <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
-                      {project.description}
-                    </p>
+                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
+                    {t(project.titleKey)}
+                  </h3>
+                  <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
+                    {t(project.descriptionKey)}
+                  </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 4).map((tech, techIndex) => {
                       const colors = [
@@ -590,7 +581,7 @@ export default function Home() {
                       >
                         <Link href={project.githubUrl} target="_blank">
                           <Github className="h-4 w-4 mr-2" />
-                          Code
+                          {t("projects.code")}
                         </Link>
                       </Button>
                     )}
@@ -602,7 +593,7 @@ export default function Home() {
                       >
                         <Link href={project.liveUrl} target="_blank">
                           <ExternalLink className="h-4 w-4 mr-2" />
-                          Live Demo
+                          {t("projects.demo")}
                         </Link>
                       </Button>
                     )}
