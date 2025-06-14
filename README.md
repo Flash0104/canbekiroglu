@@ -130,25 +130,34 @@ The project can also be deployed on:
 
 ## 📧 Contact Form Integration
 
-The contact form currently logs to console. To make it functional:
+The contact form is fully functional and uses Resend for email delivery.
 
-1. **Using Formspree**:
-   ```typescript
-   const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify(formData)
-   });
+### Setup Email Notifications
+
+1. **Get a Resend API Key**:
+   - Sign up at [resend.com](https://resend.com)
+   - Go to [API Keys](https://resend.com/api-keys)
+   - Create a new API key
+
+2. **Configure Environment Variables**:
+   Create a `.env.local` file in your project root:
+   ```bash
+   RESEND_API_KEY=re_your_api_key_here
    ```
 
-2. **Using Resend**:
-   ```typescript
-   const response = await fetch('/api/contact', {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify(formData)
-   });
+3. **Test the Contact Form**:
+   ```bash
+   curl -X POST http://localhost:3000/api/contact \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Test","email":"test@example.com","subject":"Test","message":"Hello"}'
    ```
+
+### Features
+- ✅ Form validation (required fields, email format)
+- ✅ Email notifications with HTML formatting
+- ✅ Error handling and user feedback
+- ✅ Works without API key (logs to console)
+- ✅ Responsive design with loading states
 
 ## 🔧 Development
 
