@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/language-context";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, ExternalLink, Github, Linkedin } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Download, ExternalLink, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -25,6 +25,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -38,7 +39,7 @@ export default function Home() {
       const response = await fetch('/api/projects');
       if (response.ok) {
         const data = await response.json();
-        setProjects(data.slice(0, 3)); // Show only first 3 projects
+        setProjects(data); // Show all projects
       }
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -55,6 +56,24 @@ export default function Home() {
     { name: "Python", color: "from-blue-600 to-purple-600" },
     { name: "AWS", color: "from-orange-500 to-red-500" },
   ];
+
+  const scrollLeft = () => {
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: -320, // Width of one card + gap
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainer) {
+      scrollContainer.scrollBy({
+        left: 320, // Width of one card + gap
+        behavior: 'smooth'
+      });
+    }
+  };
 
   if (!mounted) {
     return (
@@ -158,7 +177,13 @@ export default function Home() {
 
         {/* Featured Projects */}
         <section className="container mx-auto px-4 py-16">
-          <div className="flex justify-between items-center mb-12">
+          <motion.div 
+            className="flex justify-between items-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <div>
               <h2 className="text-3xl font-bold mb-4">
                 {t("projects.featured")}{" "}
@@ -170,104 +195,148 @@ export default function Home() {
                 {t("projects.description")}
               </p>
             </div>
-            <Button variant="outline" asChild>
-              <Link href="/projects">
-                {t("projects.viewAll")}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button variant="outline" asChild className="hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)] hover:[text-shadow:0_0_8px_rgba(168,85,247,0.9),0_0_16px_rgba(168,85,247,0.6)]">
+                <Link href="/projects">
+                  {t("projects.viewAll")}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+            </motion.div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {loading ? (
-              Array.from({ length: 3 }).map((_, i) => (
-                <div key={i} className="bg-card rounded-lg p-6 border animate-pulse">
-                  <div className="h-48 bg-muted rounded-lg mb-4"></div>
-                  <div className="h-4 bg-muted rounded mb-2"></div>
-                  <div className="h-3 bg-muted rounded mb-4"></div>
-                  <div className="flex gap-2 mb-4">
-                    <div className="h-6 w-16 bg-muted rounded"></div>
-                    <div className="h-6 w-16 bg-muted rounded"></div>
-                  </div>
-                </div>
-              ))
-            ) : (
-              projects.map((project, index) => (
-                <div
-                  key={`${project.id}-mint-${index}-${forceUpdate}`}
-                  className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border-2 border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 hover:scale-105 transition-all duration-300 relative"
-                >
-                  {/* Debug indicator */}
-                  <div className="absolute top-2 right-2 w-4 h-4 bg-red-500 rounded-full z-10" title={`Mounted: ${mounted}, Update: ${forceUpdate}`}></div>
-                  <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.titleKey}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                  </div>
-                  
-                  <div className="p-6 bg-white/90 backdrop-blur-sm shadow-inner">
-                    <h3 className="text-xl font-bold mb-3 text-black group-hover:text-emerald-600 group-hover:scale-105 transition-all duration-300 drop-shadow-sm">
-                      {t(project.titleKey)}
-                    </h3>
-                    <p className="text-gray-800 mb-4 line-clamp-2 leading-relaxed font-medium drop-shadow-sm">
-                      {t(project.descriptionKey)}
-                    </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.slice(0, 4).map((tech, techIndex) => {
-                        const colors = [
-                          "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
-                          "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
-                          "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30",
-                          "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
-                        ];
-                        return (
-                          <Badge 
-                            key={tech} 
-                            variant="outline" 
-                            className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
-                          >
-                            {tech}
-                          </Badge>
-                        );
-                      })}
-                    </div>
-                    
-                    {/* Buttons at bottom of card */}
-                    <div className="flex gap-3 mt-4">
-                      {project.githubUrl && (
-                        <Button 
-                          variant="outline" 
-                          size="sm" 
-                          asChild 
-                          className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
-                        >
-                          <Link href={project.githubUrl} target="_blank">
-                            <Github className="h-4 w-4 mr-2" />
-                            {t("projects.code")}
-                          </Link>
-                        </Button>
-                      )}
-                      {project.liveUrl && (
-                        <Button 
-                          size="sm" 
-                          asChild 
-                          className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
-                        >
-                          <Link href={project.liveUrl} target="_blank">
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            {t("projects.demo")}
-                          </Link>
-                        </Button>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ))
-            )}
+          {/* Scrollable Projects Container */}
+          <div className="relative group">
+            {/* Left Arrow */}
+            <motion.button
+              onClick={scrollLeft}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-purple-50 dark:hover:bg-purple-900/50 hover:border-purple-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </motion.button>
+
+            {/* Right Arrow */}
+            <motion.button
+              onClick={scrollRight}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-purple-50 dark:hover:bg-purple-900/50 hover:border-purple-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+            </motion.button>
+
+            {/* Scrollable Projects */}
+            <div 
+              ref={setScrollContainer}
+              className="overflow-x-auto scrollbar-hide scroll-smooth"
+            >
+              <div className="flex gap-6 pb-4" style={{ width: 'max-content' }}>
+                {loading ? (
+                  Array.from({ length: 3 }).map((_, i) => (
+                    <motion.div 
+                      key={i} 
+                      className="bg-card rounded-lg p-6 border animate-pulse flex-shrink-0"
+                      style={{ width: '300px', height: '400px' }}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                    >
+                      <div className="h-48 bg-muted rounded-lg mb-4"></div>
+                      <div className="h-4 bg-muted rounded mb-2"></div>
+                      <div className="h-3 bg-muted rounded mb-4"></div>
+                      <div className="flex gap-2 mb-4">
+                        <div className="h-6 w-16 bg-muted rounded"></div>
+                        <div className="h-6 w-16 bg-muted rounded"></div>
+                      </div>
+                    </motion.div>
+                  ))
+                ) : (
+                  projects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300 flex-shrink-0"
+                      style={{ width: '300px' }}
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="relative h-48 overflow-hidden">
+                        <Image
+                          src={project.image}
+                          alt={project.titleKey}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                      </div>
+                      
+                      <div className="p-6">
+                        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
+                          {t(project.titleKey)}
+                        </h3>
+                        <p className="text-slate-300 mb-4 line-clamp-3 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
+                          {t(project.descriptionKey)}
+                        </p>
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          {project.technologies.slice(0, 3).map((tech, techIndex) => {
+                            const colors = [
+                              "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
+                              "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
+                              "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30"
+                            ];
+                            return (
+                              <Badge 
+                                key={tech} 
+                                variant="outline" 
+                                className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
+                              >
+                                {tech}
+                              </Badge>
+                            );
+                          })}
+                        </div>
+                        
+                        {/* Buttons at bottom of card */}
+                        <div className="flex gap-3 mt-4">
+                          {project.githubUrl && (
+                            <Button 
+                              variant="outline" 
+                              size="sm" 
+                              asChild 
+                              className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
+                            >
+                              <Link href={project.githubUrl} target="_blank">
+                                <Github className="h-4 w-4 mr-2" />
+                                {t("projects.code")}
+                              </Link>
+                            </Button>
+                          )}
+                          {project.liveUrl && (
+                            <Button 
+                              size="sm" 
+                              asChild 
+                              className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
+                            >
+                              <Link href={project.liveUrl} target="_blank">
+                                <ExternalLink className="h-4 w-4 mr-2" />
+                                {t("projects.demo")}
+                              </Link>
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
         </section>
       </div>
@@ -508,100 +577,135 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {loading ? (
-            Array.from({ length: 3 }).map((_, i) => (
-              <motion.div 
-                key={i} 
-                className="bg-card rounded-lg p-6 border animate-pulse"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <div className="h-48 bg-muted rounded-lg mb-4"></div>
-                <div className="h-4 bg-muted rounded mb-2"></div>
-                <div className="h-3 bg-muted rounded mb-4"></div>
-                <div className="flex gap-2 mb-4">
-                  <div className="h-6 w-16 bg-muted rounded"></div>
-                  <div className="h-6 w-16 bg-muted rounded"></div>
-                </div>
-              </motion.div>
-            ))
-          ) : (
-            projects.map((project) => (
-              <div
-                key={project.id}
-                className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300"
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.titleKey}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
-                    {t(project.titleKey)}
-                  </h3>
-                  <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
-                    {t(project.descriptionKey)}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 4).map((tech, techIndex) => {
-                      const colors = [
-                        "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
-                        "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
-                        "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30",
-                        "bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300 border-orange-500/30"
-                      ];
-                      return (
-                        <Badge 
-                          key={tech} 
-                          variant="outline" 
-                          className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
-                        >
-                          {tech}
-                        </Badge>
-                      );
-                    })}
-                  </div>
-                  
-                  {/* Buttons at bottom of card */}
-                  <div className="flex gap-3 mt-4">
-                    {project.githubUrl && (
-                      <Button 
-                        variant="outline" 
-                        size="sm" 
-                        asChild 
-                        className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
-                      >
-                        <Link href={project.githubUrl} target="_blank">
-                          <Github className="h-4 w-4 mr-2" />
-                          {t("projects.code")}
-                        </Link>
-                      </Button>
-                    )}
-                    {project.liveUrl && (
-                      <Button 
-                        size="sm" 
-                        asChild 
-                        className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
-                      >
-                        <Link href={project.liveUrl} target="_blank">
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          {t("projects.demo")}
-                        </Link>
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
+        {/* Scrollable Projects Container */}
+        <div className="relative group">
+          {/* Left Arrow */}
+          <motion.button
+            onClick={scrollLeft}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-purple-50 dark:hover:bg-purple-900/50 hover:border-purple-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </motion.button>
+
+          {/* Right Arrow */}
+          <motion.button
+            onClick={scrollRight}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full shadow-lg border border-gray-200 dark:border-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 hover:bg-purple-50 dark:hover:bg-purple-900/50 hover:border-purple-300"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+          </motion.button>
+
+          {/* Scrollable Projects */}
+          <div 
+            ref={setScrollContainer}
+            className="overflow-x-auto scrollbar-hide scroll-smooth"
+          >
+            <div className="flex gap-6 pb-4" style={{ width: 'max-content' }}>
+              {loading ? (
+                Array.from({ length: 3 }).map((_, i) => (
+                  <motion.div 
+                    key={i} 
+                    className="bg-card rounded-lg p-6 border animate-pulse flex-shrink-0"
+                    style={{ width: '300px', height: '400px' }}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                  >
+                    <div className="h-48 bg-muted rounded-lg mb-4"></div>
+                    <div className="h-4 bg-muted rounded mb-2"></div>
+                    <div className="h-3 bg-muted rounded mb-4"></div>
+                    <div className="flex gap-2 mb-4">
+                      <div className="h-6 w-16 bg-muted rounded"></div>
+                      <div className="h-6 w-16 bg-muted rounded"></div>
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                projects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300 flex-shrink-0"
+                    style={{ width: '300px' }}
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.titleKey}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                    </div>
+                    
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
+                        {t(project.titleKey)}
+                      </h3>
+                      <p className="text-slate-300 mb-4 line-clamp-3 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
+                        {t(project.descriptionKey)}
+                      </p>
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.slice(0, 3).map((tech, techIndex) => {
+                          const colors = [
+                            "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 text-blue-300 border-blue-500/30",
+                            "bg-gradient-to-r from-purple-500/20 to-pink-500/20 text-purple-300 border-purple-500/30",
+                            "bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 border-green-500/30"
+                          ];
+                          return (
+                            <Badge 
+                              key={tech} 
+                              variant="outline" 
+                              className={`text-xs font-medium border ${colors[techIndex % colors.length]}`}
+                            >
+                              {tech}
+                            </Badge>
+                          );
+                        })}
+                      </div>
+                      
+                      {/* Buttons at bottom of card */}
+                      <div className="flex gap-3 mt-4">
+                        {project.githubUrl && (
+                          <Button 
+                            variant="outline" 
+                            size="sm" 
+                            asChild 
+                            className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
+                          >
+                            <Link href={project.githubUrl} target="_blank">
+                              <Github className="h-4 w-4 mr-2" />
+                              {t("projects.code")}
+                            </Link>
+                          </Button>
+                        )}
+                        {project.liveUrl && (
+                          <Button 
+                            size="sm" 
+                            asChild 
+                            className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
+                          >
+                            <Link href={project.liveUrl} target="_blank">
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                              {t("projects.demo")}
+                            </Link>
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       </section>
     </div>

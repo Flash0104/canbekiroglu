@@ -43,5 +43,32 @@
     "githubUrl": "https://github.com/Flash0104/portfolio",
     "liveUrl": "https://yourportfolio.vercel.app",
     "image": "/projects/portfolio.jpg"
+  },
+  {
+    "id": "6",
+    "titleKey": "project.chatapp.title",
+    "descriptionKey": "project.chatapp.description",
+    "technologies": ["React", "Firebase", "Socket.io", "Material-UI", "Redux"],
+    "githubUrl": "https://github.com/Flash0104/realtime-chat",
+    "liveUrl": "https://realtime-chat-demo.vercel.app",
+    "image": "/projects/chat.jpg"
+  },
+  {
+    "id": "7",
+    "titleKey": "project.dashboard.title",
+    "descriptionKey": "project.dashboard.description",
+    "technologies": ["Vue.js", "D3.js", "Node.js", "Express", "PostgreSQL"],
+    "githubUrl": "https://github.com/Flash0104/analytics-dashboard",
+    "liveUrl": "https://analytics-dashboard-demo.vercel.app",
+    "image": "/projects/dashboard.jpg"
+  },
+  {
+    "id": "8",
+    "titleKey": "project.mobile.title",
+    "descriptionKey": "project.mobile.description",
+    "technologies": ["React Native", "Expo", "Firebase", "TypeScript", "Redux"],
+    "githubUrl": "https://github.com/Flash0104/mobile-app",
+    "liveUrl": "https://expo.dev/@flash0104/mobile-app",
+    "image": "/projects/mobile.jpg"
   }
 ] 

@@ -54,6 +54,12 @@ const translations = {
     "project.weather.description": "A responsive weather dashboard that displays current weather conditions, forecasts, and interactive maps using multiple weather APIs.",
     "project.portfolio.title": "Portfolio Website",
     "project.portfolio.description": "A modern, responsive portfolio website built with Next.js 14, featuring a blog system, project showcase, and contact form.",
+    "project.chatapp.title": "Real-time Chat Application",
+    "project.chatapp.description": "A real-time chat application with instant messaging, user authentication, and responsive design using React and Firebase.",
+    "project.dashboard.title": "Analytics Dashboard",
+    "project.dashboard.description": "A comprehensive analytics dashboard with interactive charts, data visualization, and real-time metrics using D3.js and Vue.js.",
+    "project.mobile.title": "Mobile App Development",
+    "project.mobile.description": "A cross-platform mobile application built with React Native and Expo, featuring offline support and push notifications.",
     
     // Skills
     "skills.title": "What I Do",
@@ -204,6 +210,12 @@ const translations = {
     "project.weather.description": "Ein responsives Wetter-Dashboard, das aktuelle Wetterbedingungen, Vorhersagen und interaktive Karten mit mehreren Wetter-APIs anzeigt.",
     "project.portfolio.title": "Portfolio Website",
     "project.portfolio.description": "Eine moderne, responsive Portfolio-Website, entwickelt mit Next.js 14, mit Blog-System, Projekt-Showcase und Kontaktformular.",
+    "project.chatapp.title": "Echtzeit-Chat-Anwendung",
+    "project.chatapp.description": "Eine Echtzeit-Chat-Anwendung mit sofortigen Nachrichten, Benutzerauthentifizierung und responsivem Design mit React und Firebase.",
+    "project.dashboard.title": "Analytics Dashboard",
+    "project.dashboard.description": "Ein umfassendes Analytics-Dashboard mit interaktiven Diagrammen, Datenvisualisierung und Echtzeit-Metriken mit D3.js und Vue.js.",
+    "project.mobile.title": "Mobile App Entwicklung",
+    "project.mobile.description": "Eine plattformübergreifende mobile Anwendung mit React Native und Expo, mit Offline-Unterstützung und Push-Benachrichtigungen.",
     
     // Skills
     "skills.title": "Was ich am",
@@ -354,6 +366,12 @@ const translations = {
     "project.weather.description": "Mevcut hava koşullarını, tahminleri ve birden fazla hava durumu API'si kullanarak etkileşimli haritaları gösteren duyarlı hava durumu paneli.",
     "project.portfolio.title": "Portföy Web Sitesi",
     "project.portfolio.description": "Blog sistemi, proje vitrini ve iletişim formu içeren Next.js 14 ile oluşturulmuş modern, duyarlı portföy web sitesi.",
+    "project.chatapp.title": "Gerçek Zamanlı Chat Uygulaması",
+    "project.chatapp.description": "React ve Firebase kullanarak anlık mesajlaşma, kullanıcı kimlik doğrulaması ve responsive tasarım özellikli gerçek zamanlı chat uygulaması.",
+    "project.dashboard.title": "Analitik Dashboard",
+    "project.dashboard.description": "D3.js ve Vue.js kullanarak interaktif grafikler, veri görselleştirme ve gerçek zamanlı metriklere sahip kapsamlı analitik dashboard.",
+    "project.mobile.title": "Mobil Uygulama Geliştirme",
+    "project.mobile.description": "React Native ve Expo ile oluşturulmuş, offline destek ve push bildirimleri özellikli cross-platform mobil uygulama.",
     
     // Skills
     "skills.title": "En İyi Yaptığım",
