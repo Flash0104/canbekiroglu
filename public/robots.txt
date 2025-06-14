@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
- 
-Sitemap: https://canbekiroglu-portfolio.vercel.app/sitemap.xml 
+
+# Sitemap
+Sitemap: https://canbekiroglu.vercel.app/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1 

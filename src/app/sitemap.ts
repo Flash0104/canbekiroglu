@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getAllPosts();
   
   const blogUrls = posts.map((post) => ({
-    url: `https://canbekiroglu-portfolio.vercel.app/blog/${post.slug}`,
+    url: `https://canbekiroglu.vercel.app/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
@@ -13,25 +13,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [
     {
-      url: 'https://canbekiroglu-portfolio.vercel.app',
+      url: 'https://canbekiroglu.vercel.app',
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: 'https://canbekiroglu-portfolio.vercel.app/about',
+      url: 'https://canbekiroglu.vercel.app/about',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: 'https://canbekiroglu-portfolio.vercel.app/blog',
+      url: 'https://canbekiroglu.vercel.app/blog',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: 'https://canbekiroglu-portfolio.vercel.app/contact',
+      url: 'https://canbekiroglu.vercel.app/contact',
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
