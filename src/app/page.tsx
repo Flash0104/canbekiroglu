@@ -22,10 +22,13 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [forceUpdate, setForceUpdate] = useState(0);
 
   useEffect(() => {
     setMounted(true);
     fetchProjects();
+    // Force update after mount to ensure styles apply
+    setTimeout(() => setForceUpdate(1), 100);
   }, []);
 
   const fetchProjects = async () => {
@@ -189,11 +192,13 @@ export default function Home() {
                 </div>
               ))
             ) : (
-              projects.map((project) => (
+              projects.map((project, index) => (
                 <div
-                  key={project.id}
-                  className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
+                  key={`${project.id}-mint-${index}-${forceUpdate}`}
+                  className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border-2 border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 hover:scale-105 transition-all duration-300 relative"
                 >
+                  {/* Debug indicator */}
+                  <div className="absolute top-2 right-2 w-4 h-4 bg-red-500 rounded-full z-10" title={`Mounted: ${mounted}, Update: ${forceUpdate}`}></div>
                   <div className="relative h-48 overflow-hidden">
                     <Image
                       src={project.image}
@@ -201,14 +206,14 @@ export default function Home() {
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   </div>
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300">
+                  <div className="p-6 bg-white/90 backdrop-blur-sm shadow-inner">
+                    <h3 className="text-xl font-bold mb-3 text-black group-hover:text-emerald-600 group-hover:scale-105 transition-all duration-300 drop-shadow-sm">
                       {project.title}
                     </h3>
-                    <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed">
+                    <p className="text-gray-800 mb-4 line-clamp-2 leading-relaxed font-medium drop-shadow-sm">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -238,7 +243,7 @@ export default function Home() {
                           variant="outline" 
                           size="sm" 
                           asChild 
-                          className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-white/10 hover:border-blue-400 hover:text-white transition-all duration-300"
+                          className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
                         >
                           <Link href={project.githubUrl} target="_blank">
                             <Github className="h-4 w-4 mr-2" />
@@ -250,7 +255,7 @@ export default function Home() {
                         <Button 
                           size="sm" 
                           asChild 
-                          className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg"
+                          className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
                         >
                           <Link href={project.liveUrl} target="_blank">
                             <ExternalLink className="h-4 w-4 mr-2" />
@@ -335,7 +340,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-400 transition-all duration-300">
+                <Button variant="outline" size="lg" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-purple-500/10 hover:border-blue-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)] hover:[text-shadow:0_0_8px_rgba(59,130,246,0.9),0_0_16px_rgba(59,130,246,0.6)]">
                   <Link href="https://github.com/Flash0104" target="_blank">
                     <Github className="mr-2 h-5 w-5" />
                     GitHub
@@ -346,7 +351,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-cyan-500/10 hover:border-blue-400 transition-all duration-300">
+                <Button variant="outline" size="lg" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-cyan-500/10 hover:border-blue-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.8)] hover:[text-shadow:0_0_8px_rgba(6,182,212,0.9),0_0_16px_rgba(6,182,212,0.6)]">
                   <Link href="https://linkedin.com/in/canbekiroglu" target="_blank">
                     <Linkedin className="mr-2 h-5 w-5" />
                     LinkedIn
@@ -366,7 +371,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button size="lg" asChild className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                <Button size="lg" asChild className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:drop-shadow-[0_0_16px_rgba(168,85,247,0.9)] hover:[text-shadow:0_0_12px_rgba(168,85,247,1),0_0_24px_rgba(168,85,247,0.7),0_0_36px_rgba(168,85,247,0.5)]">
                   <Link href="/contact">
                     Get In Touch
                     <ArrowRight className="ml-2 h-5 w-5" />
@@ -377,7 +382,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300">
+                <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.8)] hover:[text-shadow:0_0_8px_rgba(34,197,94,0.9),0_0_16px_rgba(34,197,94,0.6)]">
                   <Download className="mr-2 h-5 w-5" />
                   Download CV
                 </Button>
@@ -503,7 +508,7 @@ export default function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button variant="outline" asChild className="hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400 transition-all duration-300">
+            <Button variant="outline" asChild className="hover:bg-gradient-to-r hover:from-purple-500/10 hover:to-pink-500/10 hover:border-purple-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)] hover:[text-shadow:0_0_8px_rgba(168,85,247,0.9),0_0_16px_rgba(168,85,247,0.6)]">
               <Link href="/projects">
                 View All Projects
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -533,10 +538,10 @@ export default function Home() {
             ))
           ) : (
             projects.map((project) => (
-              <div
-                key={project.id}
-                className="group bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
-              >
+                              <div
+                  key={project.id}
+                  className="group bg-gradient-to-br from-purple-500 via-pink-500 to-purple-600 rounded-xl overflow-hidden border border-purple-400/50 hover:border-purple-300 hover:shadow-2xl hover:shadow-purple-400/60 transition-all duration-300"
+                >
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src={project.image}
@@ -548,12 +553,12 @@ export default function Home() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed">
-                    {project.description}
-                  </p>
+                                      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-yellow-200 transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(254,240,138,0.8)] group-hover:[text-shadow:0_0_10px_rgba(254,240,138,0.9),0_0_20px_rgba(254,240,138,0.6),0_0_30px_rgba(254,240,138,0.4)]">
+                      {project.title}
+                    </h3>
+                                      <p className="text-slate-300 mb-4 line-clamp-2 leading-relaxed group-hover:text-slate-200 transition-all duration-300 group-hover:drop-shadow-[0_0_6px_rgba(226,232,240,0.7)] group-hover:[text-shadow:0_0_8px_rgba(226,232,240,0.8),0_0_16px_rgba(226,232,240,0.5)]">
+                      {project.description}
+                    </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 4).map((tech, techIndex) => {
                       const colors = [
@@ -581,7 +586,7 @@ export default function Home() {
                         variant="outline" 
                         size="sm" 
                         asChild 
-                        className="flex-1 bg-transparent border-slate-600 text-slate-300 hover:bg-white/10 hover:border-blue-400 hover:text-white transition-all duration-300"
+                        className="flex-1 bg-white/90 border-gray-700 text-black hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:border-purple-500 hover:text-purple-600 hover:scale-105 transition-all duration-300 font-semibold shadow-sm hover:shadow-purple-200"
                       >
                         <Link href={project.githubUrl} target="_blank">
                           <Github className="h-4 w-4 mr-2" />
@@ -593,7 +598,7 @@ export default function Home() {
                       <Button 
                         size="sm" 
                         asChild 
-                        className="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg"
+                        className="flex-1 bg-gradient-to-r from-gray-800 to-black hover:from-purple-500 hover:to-pink-600 hover:scale-105 text-white font-semibold shadow-lg hover:shadow-purple-400/50 transition-all duration-300"
                       >
                         <Link href={project.liveUrl} target="_blank">
                           <ExternalLink className="h-4 w-4 mr-2" />
