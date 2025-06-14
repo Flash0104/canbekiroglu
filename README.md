@@ -1,4 +1,4 @@
-# Personal Portfolio Website
+# Can Bekiroglu - Personal Portfolio
 
 A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS. Features a blog system, project showcase, and contact form.
 
@@ -46,7 +46,7 @@ A modern, responsive portfolio website built with Next.js 14, TypeScript, and Ta
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Flash0104/Portfolio.git
-   cd portfolio
+   cd canbekiroglu
    ```
 
 2. **Install dependencies**
@@ -186,4 +186,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 ## 📞 Support
 
 If you have any questions or need help customizing the portfolio, feel free to reach out!
-# Portfolio with Contact Form
+
+## 🌐 Live Website
+
+Visit the live website at: [https://canbekiroglu.vercel.app](https://canbekiroglu.vercel.app)
