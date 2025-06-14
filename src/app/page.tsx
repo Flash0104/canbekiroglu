@@ -24,14 +24,11 @@ export default function Home() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const [forceUpdate, setForceUpdate] = useState(0);
   const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
     fetchProjects();
-    // Force update after mount to ensure styles apply
-    setTimeout(() => setForceUpdate(1), 100);
   }, []);
 
   const fetchProjects = async () => {
