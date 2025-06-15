@@ -15,7 +15,7 @@
     "technologies": ["Next.js 15", "TypeScript", "WebRTC", "Socket.io", "Prisma", "Supabase", "Cloudinary"],
     "githubUrl": "https://github.com/Flash0104/screener",
     "liveUrl": "https://screener-lemon.vercel.app",
-    "image": "/projects/screener.jpg"
+    "image": "/projects/screener.png"
   },
   {
     "id": "3",
