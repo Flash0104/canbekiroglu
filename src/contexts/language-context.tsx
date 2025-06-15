@@ -46,8 +46,8 @@ const translations = {
     // Project Details
     "project.lieferspatz.title": "Lieferspatz - Food Delivery Platform",
     "project.lieferspatz.description": "A comprehensive food delivery platform with multi-user authentication (Customer, Restaurant, Admin), real-time cart management, and PostgreSQL database. Features include restaurant dashboards, order processing, and payment integration.",
-    "project.ecommerce.title": "E-Commerce Platform",
-    "project.ecommerce.description": "A full-stack e-commerce platform built with Next.js, TypeScript, and Supabase. Features include user authentication, product management, shopping cart, and payment integration.",
+    "project.screener.title": "Screener - Live Streaming & Recording Platform",
+    "project.screener.description": "A complete video collaboration platform with WebRTC live streaming, professional screen recording, and cloud video management. Features real-time peer-to-peer video calls, screen capture with camera overlay, and Cloudinary-powered video gallery.",
     "project.taskmanager.title": "Task Management App",
     "project.taskmanager.description": "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
     "project.weather.title": "Weather Dashboard",
@@ -202,8 +202,8 @@ const translations = {
     // Project Details
     "project.lieferspatz.title": "Lieferspatz - Food Delivery Plattform",
     "project.lieferspatz.description": "Eine umfassende Food-Delivery-Plattform mit Multi-User-Authentifizierung (Kunde, Restaurant, Admin), Echtzeit-Warenkorbverwaltung und PostgreSQL-Datenbank. Funktionen umfassen Restaurant-Dashboards, Bestellabwicklung und Zahlungsintegration.",
-    "project.ecommerce.title": "E-Commerce Plattform",
-    "project.ecommerce.description": "Eine Full-Stack E-Commerce-Plattform, entwickelt mit Next.js, TypeScript und Supabase. Funktionen umfassen Benutzerauthentifizierung, Produktverwaltung, Warenkorb und Zahlungsintegration.",
+    "project.screener.title": "Screener - Live Streaming & Aufzeichnungsplattform",
+    "project.screener.description": "Eine vollständige Video-Kollaborationsplattform mit WebRTC-Live-Streaming, professioneller Bildschirmaufzeichnung und Cloud-Video-Management. Funktionen umfassen Echtzeit-Peer-to-Peer-Videoanrufe, Bildschirmaufnahme mit Kamera-Overlay und Cloudinary-gestützte Video-Galerie.",
     "project.taskmanager.title": "Task Management App",
     "project.taskmanager.description": "Eine kollaborative Aufgabenverwaltungsanwendung mit Echtzeit-Updates, Drag-and-Drop-Funktionalität und Team-Kollaborationsfunktionen.",
     "project.weather.title": "Wetter Dashboard",
@@ -358,8 +358,8 @@ const translations = {
     // Project Details
     "project.lieferspatz.title": "Lieferspatz - Yemek Teslimat Platformu",
     "project.lieferspatz.description": "Çoklu kullanıcı kimlik doğrulaması (Müşteri, Restoran, Admin), gerçek zamanlı sepet yönetimi ve PostgreSQL veritabanı ile kapsamlı bir yemek teslimat platformu. Restoran panelleri, sipariş işleme ve ödeme entegrasyonu gibi özellikler içerir.",
-    "project.ecommerce.title": "E-Ticaret Platformu",
-    "project.ecommerce.description": "Next.js, TypeScript ve Supabase ile oluşturulmuş tam yığın e-ticaret platformu. Kullanıcı kimlik doğrulaması, ürün yönetimi, alışveriş sepeti ve ödeme entegrasyonu gibi özellikler içerir.",
+    "project.screener.title": "Screener - Canlı Yayın & Kayıt Platformu",
+    "project.screener.description": "WebRTC canlı yayın, profesyonel ekran kaydı ve bulut video yönetimi ile kapsamlı video işbirliği platformu. Gerçek zamanlı eşler arası video görüşmeleri, kamera overlay'li ekran yakalama ve Cloudinary destekli video galerisi özellikleri içerir.",
     "project.taskmanager.title": "Görev Yönetimi Uygulaması",
     "project.taskmanager.description": "Gerçek zamanlı güncellemeler, sürükle-bırak işlevselliği ve takım işbirliği özellikleri ile işbirlikçi görev yönetimi uygulaması.",
     "project.weather.title": "Hava Durumu Paneli",
