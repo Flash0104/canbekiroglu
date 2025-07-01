@@ -24,7 +24,7 @@
     "technologies": ["React.js", "Vite", "Tailwind CSS", "Supabase", "React Router DOM", "Heroicons"],
     "githubUrl": "https://github.com/Flash0104/smartude",
     "liveUrl": "https://smartude.vercel.app",
-    "image": "/projects/smartude.jpg"
+    "image": "/projects/smartude.png"
   },
   {
     "id": "4",
