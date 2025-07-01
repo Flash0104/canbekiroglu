@@ -19,6 +19,15 @@
   },
   {
     "id": "3",
+    "titleKey": "project.smartude.title",
+    "descriptionKey": "project.smartude.description",
+    "technologies": ["React.js", "Vite", "Tailwind CSS", "Supabase", "React Router DOM", "Heroicons"],
+    "githubUrl": "https://github.com/Flash0104/smartude",
+    "liveUrl": "https://smartude.vercel.app",
+    "image": "/projects/smartude.jpg"
+  },
+  {
+    "id": "4",
     "titleKey": "project.taskmanager.title",
     "descriptionKey": "project.taskmanager.description",
     "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
@@ -27,7 +36,7 @@
     "image": "/projects/taskmanager.jpg"
   },
   {
-    "id": "4",
+    "id": "5",
     "titleKey": "project.weather.title",
     "descriptionKey": "project.weather.description",
     "technologies": ["React", "TypeScript", "OpenWeather API", "Chart.js", "Tailwind CSS"],
@@ -36,7 +45,7 @@
     "image": "/projects/weather.jpg"
   },
   {
-    "id": "5",
+    "id": "6",
     "titleKey": "project.portfolio.title",
     "descriptionKey": "project.portfolio.description",
     "technologies": ["Next.js 14", "TypeScript", "Tailwind CSS", "Markdown", "shadcn/ui"],
@@ -45,7 +54,7 @@
     "image": "/projects/portfolio.jpg"
   },
   {
-    "id": "6",
+    "id": "7",
     "titleKey": "project.chatapp.title",
     "descriptionKey": "project.chatapp.description",
     "technologies": ["React", "Firebase", "Socket.io", "Material-UI", "Redux"],
@@ -54,7 +63,7 @@
     "image": "/projects/chat.jpg"
   },
   {
-    "id": "7",
+    "id": "8",
     "titleKey": "project.dashboard.title",
     "descriptionKey": "project.dashboard.description",
     "technologies": ["Vue.js", "D3.js", "Node.js", "Express", "PostgreSQL"],
@@ -63,7 +72,7 @@
     "image": "/projects/dashboard.jpg"
   },
   {
-    "id": "8",
+    "id": "9",
     "titleKey": "project.mobile.title",
     "descriptionKey": "project.mobile.description",
     "technologies": ["React Native", "Expo", "Firebase", "TypeScript", "Redux"],
