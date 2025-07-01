@@ -98,7 +98,6 @@ export default function AppointmentPage() {
     
     // Get first day of month and calculate starting calendar date
     const firstDay = new Date(year, month, 1);
-    const lastDay = new Date(year, month + 1, 0);
     const startDate = new Date(firstDay);
     startDate.setDate(startDate.getDate() - firstDay.getDay()); // Start from Sunday
     
@@ -216,6 +215,7 @@ export default function AppointmentPage() {
         setSubmitStatus('error');
       }
     } catch (error) {
+      console.error('Failed to submit appointment:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
