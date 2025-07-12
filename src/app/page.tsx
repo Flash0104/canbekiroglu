@@ -104,7 +104,7 @@ export default function Home() {
                   </Link>
                 </Button>
                 <Button variant="outline" size="lg" asChild>
-                  <Link href="https://linkedin.com/in/canbekiroglu" target="_blank">
+                  <Link href="https://www.linkedin.com/in/canbekiroglu777" target="_blank">
                     <Linkedin className="mr-2 h-5 w-5" />
                     LinkedIn
                   </Link>
@@ -416,7 +416,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button variant="outline" size="lg" asChild className="hover:bg-gradient-to-r hover:from-blue-500/10 hover:to-cyan-500/10 hover:border-blue-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(6,182,212,0.8)] hover:[text-shadow:0_0_8px_rgba(6,182,212,0.9),0_0_16px_rgba(6,182,212,0.6)]">
-                  <Link href="https://linkedin.com/in/canbekiroglu" target="_blank">
+                  <Link href="https://www.linkedin.com/in/canbekiroglu777" target="_blank">
                     <Linkedin className="mr-2 h-5 w-5" />
                     LinkedIn
                   </Link>
