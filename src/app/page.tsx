@@ -20,11 +20,21 @@ interface Project {
 }
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [scrollContainer, setScrollContainer] = useState<HTMLDivElement | null>(null);
+  
+  // Get CV path based on language
+  const getCVPath = () => {
+    const cvPaths: Record<string, string> = {
+      de: '/CVs/CAN_CV_DE_17_11_25.pdf',
+      en: '/CVs/CAN_CV_EN_17_11_25.pdf', // Default to German CV until English version is added
+      tr: '/CVs/CAN_CV_TR_17_11_25.pdf', // Default to German CV until Turkish version is added
+    };
+    return cvPaths[language] || cvPaths.en;
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -119,9 +129,11 @@ export default function Home() {
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg">
-                  <Download className="mr-2 h-5 w-5" />
-                  {t("hero.download")}
+                <Button variant="outline" size="lg" asChild>
+                  <Link href={getCVPath()} download target="_blank">
+                    <Download className="mr-2 h-5 w-5" />
+                    {t("hero.download")}
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -446,9 +458,11 @@ export default function Home() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.8)] hover:[text-shadow:0_0_8px_rgba(34,197,94,0.9),0_0_16px_rgba(34,197,94,0.6)]">
-                  <Download className="mr-2 h-5 w-5" />
-                  {t("hero.download")}
+                <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-green-500/10 hover:to-blue-500/10 hover:border-green-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.8)] hover:[text-shadow:0_0_8px_rgba(34,197,94,0.9),0_0_16px_rgba(34,197,94,0.6)]" asChild>
+                  <Link href={getCVPath()} download target="_blank">
+                    <Download className="mr-2 h-5 w-5" />
+                    {t("hero.download")}
+                  </Link>
                 </Button>
               </motion.div>
             </motion.div>

@@ -63,6 +63,8 @@ const translations = {
     "project.mobile.description": "A cross-platform mobile application built with React Native and Expo, featuring offline support and push notifications.",
     "project.smartude.title": "SmartUDE - University Onboarding Assistant",
     "project.smartude.description": "A mobile-first web app for international students at University of Duisburg-Essen. Features step-by-step onboarding checklists, campus maps, visa guides, housing information, and student community connections with persistent progress tracking.",
+    "project.agenticworkshop.title": "Agentic Workshop - AI Interview Training",
+    "project.agenticworkshop.description": "AI-powered interview training system with OpenAI Realtime API for voice interaction. Features personalized question generation from CV and job description, real-time voice interviews with ultra-low latency (~50ms), intelligent evaluation with automated scoring, and comprehensive feedback across multiple dimensions.",
     
     // Skills
     "skills.title": "What I Do",
@@ -261,6 +263,8 @@ const translations = {
     "project.mobile.description": "Eine plattformübergreifende mobile Anwendung mit React Native und Expo, mit Offline-Unterstützung und Push-Benachrichtigungen.",
     "project.smartude.title": "SmartUDE - Universitäts-Onboarding-Assistent",
     "project.smartude.description": "Eine mobile-first Web-App für internationale Studierende an der Universität Duisburg-Essen. Bietet schrittweise Onboarding-Checklisten, Campus-Karten, Visa-Guides, Wohnungsinformationen und Studentengemeinschaftsverbindungen mit persistentem Fortschritts-Tracking.",
+    "project.agenticworkshop.title": "Agentic Workshop - KI-Interview-Training",
+    "project.agenticworkshop.description": "KI-gesteuertes Interview-Trainingssystem mit OpenAI Realtime API für Sprachinteraktion. Funktionen umfassen personalisierte Fragengenerierung aus Lebenslauf und Stellenbeschreibung, Echtzeit-Sprach-Interviews mit ultra-niedriger Latenz (~50ms), intelligente Bewertung mit automatisiertem Scoring und umfassendes Feedback über mehrere Dimensionen.",
     
     // Skills
     "skills.title": "Was ich am",
@@ -459,6 +463,8 @@ const translations = {
     "project.mobile.description": "React Native ve Expo ile oluşturulmuş, offline destek ve push bildirimleri özellikli cross-platform mobil uygulama.",
     "project.smartude.title": "SmartUDE - Üniversite Uyum Asistanı",
     "project.smartude.description": "Duisburg-Essen Üniversitesi'ndeki uluslararası öğrenciler için mobil öncelikli web uygulaması. Adım adım uyum kontrol listeleri, kampüs haritaları, vize rehberleri, konaklama bilgileri ve kalıcı ilerleme takibi ile öğrenci topluluk bağlantıları sunar.",
+    "project.agenticworkshop.title": "Agentic Workshop - Yapay Zeka Görüşme Eğitimi",
+    "project.agenticworkshop.description": "Ses etkileşimi için OpenAI Realtime API ile yapay zeka destekli görüşme eğitim sistemi. CV ve iş tanımından kişiselleştirilmiş soru üretimi, ultra düşük gecikme (~50ms) ile gerçek zamanlı sesli görüşmeler, otomatik puanlama ile akıllı değerlendirme ve birden fazla boyutta kapsamlı geri bildirim özelliklerini içerir.",
     
     // Skills
     "skills.title": "En İyi Yaptığım",
