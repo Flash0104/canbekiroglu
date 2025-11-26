@@ -54,7 +54,7 @@ export function Navigation() {
               <div className={`relative px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                 pathname === item.href
                   ? "text-foreground bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-blue-200 dark:border-blue-800"
-                  : (item as any).special
+                  : "special" in item && item.special
                   ? "text-foreground bg-gradient-to-r from-emerald-500/10 to-teal-500/10 border border-emerald-300 dark:border-emerald-700 hover:from-emerald-500/20 hover:to-teal-500/20"
                   : "text-muted-foreground hover:text-foreground"
               }`}>
@@ -119,7 +119,7 @@ export function Navigation() {
                       className={`block px-4 py-3 rounded-lg text-lg font-medium transition-all ${
                         pathname === item.href
                           ? "bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 text-foreground border border-blue-200 dark:border-blue-800"
-                          : (item as any).special
+                          : "special" in item && item.special
                           ? "bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-foreground border border-emerald-300 dark:border-emerald-700 hover:from-emerald-500/20 hover:to-teal-500/20"
                           : "text-muted-foreground hover:text-foreground hover:bg-muted"
                       }`}

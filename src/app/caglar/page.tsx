@@ -198,7 +198,7 @@ export default function CaglarPage() {
                 Get In <span className="bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text text-transparent">Touch</span>
               </CardTitle>
               <p className="text-center text-muted-foreground">
-                Have a project or consultation inquiry? Let's connect!
+                Have a project or consultation inquiry? Let&apos;s connect!
               </p>
             </CardHeader>
             <CardContent>
@@ -240,7 +240,7 @@ export default function CaglarPage() {
 
                 {submitStatus === "success" && (
                   <div className="p-4 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg">
-                    ✅ Message sent successfully! I'll get back to you soon.
+                    ✅ Message sent successfully! I&apos;ll get back to you soon.
                   </div>
                 )}
 
