@@ -63,11 +63,11 @@ export default function CaglarPage() {
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl font-bold leading-tight">
                 <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-yellow-500 bg-clip-text text-transparent">
-                  Çağlar Bekiroğlu
+                  Dr. Çağlar Bekiroğlu
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground font-medium">
-                Technical Consultant | R&D and Process Management Expert
+                Mechanical Engineer | Technical Consultant | R&D and Process Management Expert
               </p>
               <p className="text-lg text-muted-foreground">
                 Technical Consultant and R&D specialist with 25+ years of experience in engineering, 
