@@ -125,21 +125,19 @@ export default function CaglarPage() {
             </div>
           </div>
 
-          {/* Right Content - Profile/Image placeholder */}
+          {/* Right Content - Profile Image */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-500 to-yellow-500 p-1">
-                <div className="w-full h-full rounded-2xl bg-white dark:bg-gray-900 flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="text-6xl font-bold bg-gradient-to-r from-emerald-600 to-yellow-600 bg-clip-text text-transparent">
-                      ÇB
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Technical Excellence<br />
-                      Innovation Leadership<br />
-                      Sustainable Solutions
-                    </p>
-                  </div>
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-emerald-500 via-teal-500 to-yellow-500 p-1 shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300">
+                <div className="w-full h-full rounded-2xl overflow-hidden relative">
+                  <Image
+                    src="/profile-caglar.jpeg"
+                    alt="Çağlar Bekiroğlu"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
               </div>
             </div>

@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Gmail SMTP transporter
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER, // canbek0104@gmail.com
+    pass: process.env.GMAIL_APP_PASSWORD, // 16 haneli app password
+  },
+});
 
 export async function POST(request: Request) {
   try {
@@ -16,10 +23,10 @@ export async function POST(request: Request) {
       );
     }
 
-    // Send email to Çağlar Bekiroğlu
-    const { data, error } = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>", // Change this to your verified domain
-      to: ["caglar.bekiroglu@hotmail.com"],
+    // Send email directly to Çağlar using Gmail SMTP
+    const mailOptions = {
+      from: `"Contact Form" <${process.env.GMAIL_USER}>`,
+      to: "caglar.bekiroglu@hotmail.com", // Direct to Çağlar!
       replyTo: email,
       subject: `New Contact from ${name}`,
       html: `
@@ -105,15 +112,13 @@ export async function POST(request: Request) {
           </body>
         </html>
       `,
-    });
+    };
 
-    if (error) {
-      console.error("Resend error:", error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+    // Send the email
+    await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
-      { message: "Email sent successfully", id: data?.id },
+      { message: "Email sent successfully" },
       { status: 200 }
     );
   } catch (error) {
