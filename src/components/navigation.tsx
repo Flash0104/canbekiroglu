@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { QRCodeModal } from "@/components/qr-code-modal";
 import { useLanguage } from "@/contexts/language-context";
 import { Globe, Menu, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -40,12 +41,13 @@ export function Navigation() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <div className="ml-4">
+        <div className="ml-4 flex items-center">
           <Link href="/" className="flex items-center space-x-2">
             <span className="text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Can Bekiroglu
             </span>
           </Link>
+          <QRCodeModal websiteUrl="https://canbekiroglu.vercel.app" />
         </div>
 
         <nav className="hidden md:flex items-center space-x-1 flex-1 justify-center">
