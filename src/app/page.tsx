@@ -470,7 +470,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Button variant="outline" size="lg" className="hover:bg-gradient-to-r hover:from-emerald-500/10 hover:to-teal-500/10 hover:border-emerald-400 transition-all duration-300 hover:drop-shadow-[0_0_12px_rgba(16,185,129,0.8)] hover:[text-shadow:0_0_8px_rgba(16,185,129,0.9),0_0_16px_rgba(16,185,129,0.6)]" asChild>
-                  <Link href="https://wa.me/4917478828827" target="_blank" rel="noopener noreferrer">
+                  <Link href="https://wa.me/491747828827" target="_blank" rel="noopener noreferrer">
                     <MessageCircle className="mr-2 h-5 w-5" />
                     WhatsApp
                   </Link>
